@@ -1,0 +1,21 @@
+.mat-card{
+  margin: auto;
+  width: 50%;
+}
+
+.mat-form-field{
+  width: 100%;
+}
+
+input{
+  width: 100%;
+}
+
+.btnHolder{
+  width: 100%;
+  text-align: center;
+}
+
+button{
+  width: 20%;
+}

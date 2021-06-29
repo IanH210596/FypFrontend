@@ -1,10 +1,60 @@
-<p>vax-details works!</p>
 <mat-card>
-  <mat-form-field>
-    <textarea matInput rows="6" [(ngModel)]="enteredValue"></textarea>
-  </mat-form-field>
-  <hr>
-  <button mat-raised-button (click)="onAddPost()">Save Post</button>
+  <mat-card-header>
+    <mat-card-title>Vaccination Details</mat-card-title>
+  </mat-card-header>
+  <form (submit)="addVaccinationDetails()">
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>PPSN</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.ppsn" type="text" name="ppsn">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Date Of Birth</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.dateOfBirth" type="date" name="dateOfBirth">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Gender</mat-label>
+      <mat-select [(ngModel)]="vaccinationDetails.selectedGender" name="gender">
+        <mat-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Nationality</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.nationality" type="text" name="nationality">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Address 1</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.addressOne" type="text" name="addressOne">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Address 2</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.addressTwo" type="text" name="addressTwo">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>City</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.city" type="text" name="city">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Post Code</mat-label>
+      <input matInput [(ngModel)]="vaccinationDetails.postCode" type="text" name="postCode">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+      <mat-label>Vaccine Preference</mat-label>
+      <mat-select [(ngModel)]="vaccinationDetails.selectedVaccinePreference" name="vaccinePreference">
+        <mat-option *ngFor="let vaccinePreference of vaccinePreferenceList" [value]="vaccinePreference.value">{{vaccinePreference.viewValue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="btnHolder">
+      <button id="save" mat-raised-button color="primary" type="submit">Save</button>
+    </div>
+  </form>
 </mat-card>
 
-<p>{{ newPost }}</p>
