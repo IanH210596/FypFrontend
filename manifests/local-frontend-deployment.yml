@@ -1,0 +1,53 @@
+# YAML file for Frontend local Deployments and Services
+# YAML to deploy latest Frontend image pushed to the Azure Container Repository for Frontend local images and allow communication over container port 80
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fyp-frontend-local
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment-name: fyp-frontend-local
+  template:
+    metadata:
+      labels:
+        deployment-name: fyp-frontend-local
+    spec:
+      containers:
+        - name: fyp-frontend-local
+          image: ianh1206/fypfrontend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+# YAML to deploy loadbalancer for the Frontend mapping incoming port 80 to target port 80 for the Frontend deployment named "fyp-frontend-local"
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label: fyp-frontend-cluster-service-local
+  name: fyp-frontend-cluster-service-loadbalancer-local
+spec:
+  type: LoadBalancer
+  ports:
+  - name: fyp-frontend-load-balancer-service-port-local
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    deployment-name: fyp-frontend-local
+---
+#  YAML to deploy Horizontal Pod Autoscaler for the Frontend "fyp-frontend-local" that will scale the Frontend from 1 to 5 replicas if allocated CPU utilization for a container exceeds 50%
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fyp-frontend-local-hpa
+spec:
+  maxReplicas: 5 # define max replica count
+  minReplicas: 1  # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fyp-frontend-local
+  targetCPUUtilizationPercentage: 50 # target CPU utilization
