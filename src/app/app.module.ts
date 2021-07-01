@@ -15,7 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register/register.component';
 import { HeaderComponent } from './header/header/header.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import { HeaderComponent } from './header/header/header.component';
     MatSelectModule,
     MatToolbarModule,
     MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

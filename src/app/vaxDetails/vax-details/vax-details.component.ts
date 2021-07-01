@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import { vaccinationDetails } from './vax-details.model';
+import { VaxDetailsService } from './vax-details.service';
 // import { EventEmitter } from 'stream';
 
 @Component({
@@ -22,27 +24,23 @@ export class VaxDetailsComponent implements OnInit {
     {value: "Moderna", viewValue: "Moderna"}
   ];
 
-  vaccinationDetails: any = {
-    ppsn: "",
-    dateOfBirth: Date,
-    selectedGender: "",
-    nationality: "",
-    addressOne: "",
-    addressTwo: "",
-    city: "",
-    postCode: "",
-    selectedVaccinePreference: ""
-  };
-
-
+  // vaccinationDetails: any = {
+  //   ppsn: "",
+  //   dateOfBirth: Date,
+  //   selectedGender: "",
+  //   nationality: "",
+  //   addressOne: "",
+  //   addressTwo: "",
+  //   city: "",
+  //   postCode: "",
+  //   selectedVaccinePreference: ""
+  // };
 
   options: FormGroup;
   floatLabelControl = new FormControl('auto');
 
 
-  // vaccinationDetailsAdded = new EventEmitter();
-
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, public vaxdetailsService: VaxDetailsService) {
     this.options = fb.group({
       floatLabel: this.floatLabelControl,
     });
@@ -51,9 +49,26 @@ export class VaxDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addVaccinationDetails(){
-    // this.newPost = this.enteredValue;
-    console.log(this.vaccinationDetails);
+  addVaccinationDetails(form : NgForm){
+    if(form.invalid){
+      return;
+    }
+
+    const details: vaccinationDetails = {
+      ppsn: form.value.ppsn,
+      dateOfBirth: form.value.dateOfBirth,
+      selectedGender: form.value.gender,
+      nationality: form.value.nationality,
+      addressOne: form.value.addressOne,
+      addressTwo: form.value.addressTwo,
+      city: form.value.city,
+      postCode: form.value.postCode,
+      selectedVaccinePreference: form.value.vaccinePreference
+    }
+
+    console.log(details);
+
+    this.vaxdetailsService.postVaccinationDetails(details);
   }
 
 }
