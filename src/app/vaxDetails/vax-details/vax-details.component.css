@@ -1,5 +1,13 @@
+.wrapper{
+  background-color: #ede3df;
+  min-height: 100%;
+  padding-bottom: 9.85vh;
+}
+
+
 .mat-card{
   margin: auto;
+  margin-bottom: 3vh;
   width: 50%;
 }
 
@@ -20,4 +28,11 @@ input{
 
 button{
   width: 20%;
+}
+
+#footer{
+  width: 100%;
+  background-color: #2196f3;
+  height: 10vh;
+  margin-top: -9.85vh;
 }

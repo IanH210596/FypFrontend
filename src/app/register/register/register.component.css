@@ -1,0 +1,62 @@
+.wrapper{
+  background-color: #2196f3;
+  min-height: 100%;
+  padding-bottom: 9.85vh;
+}
+
+.registerHeader{
+  height: 6vh;
+  width: 100%;
+  margin-bottom: 3vh;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+
+}
+
+.registerHeadingOne{
+  vertical-align: middle;
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  color: white;
+  margin: 0px;
+}
+
+.mat-card{
+  margin: auto;
+  margin-bottom: 3vh;
+  width: 50%;
+}
+
+.mat-form-field{
+  width: 100%;
+  margin-top: 0.7vh;
+  margin-bottom: 0.7vh;
+}
+
+input{
+  width: 100%;
+}
+
+.btnHolder{
+  width: 100%;
+  text-align: center;
+}
+
+button{
+  width: 20%;
+}
+
+.loginLink{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color:#2a334b;
+  text-align: center;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  outline: none;
+  border:none;
+}

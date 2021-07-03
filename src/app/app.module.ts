@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register/register.component';
 import { HeaderComponent } from './header/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MyAccountComponent } from './myAccount/my-account/my-account.component';
+import { AppRoutingModule } from './app.routing.module';
 
 
 @NgModule({
@@ -24,10 +26,12 @@ import { HttpClientModule } from '@angular/common/http';
     VaxDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

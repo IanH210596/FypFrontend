@@ -1,14 +1,29 @@
-<mat-card>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form *ngIf="!isLoading">
-    <mat-form-field>
-      <input matInput type="email" placeholder="Email">
-      <mat-error *ngIf="">Please enter a valid email</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="password" placeholder="Password">
-      <mat-error *ngIf="">Please enter a valid password</mat-error>
-    </mat-form-field>
-    <button mat-raised-button type="submit">Login</button>
-  </form>
-</mat-card>
+<div class="wrapper">
+  <div class="loginHeader">
+    <h1 class="loginHeadingOne">Covid-19 Vaccine Registration</h1>
+  </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <form (submit)="login(loginForm)" #loginForm="ngForm">
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Email</mat-label>
+        <input matInput ngModel required email type="email" name="email" #email="ngModel">
+        <mat-error *ngIf="email.invalid">Please enter a valid Email.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Password</mat-label>
+        <input matInput ngModel required type="password" name="password" #password="ngModel">
+        <mat-error *ngIf="password.invalid">Please enter a Password.</mat-error>
+      </mat-form-field>
+
+      <div class="btnHolder">
+        <button id="login" mat-raised-button color="primary" type="submit">Login</button>
+      </div>
+    </form>
+    <div class="registerLink" [routerLink] = "['/register']">Not Yet Registered?</div>
+  </mat-card>
+</div>

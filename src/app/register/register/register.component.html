@@ -1,1 +1,53 @@
-<p>register works!</p>
+<div class="wrapper">
+  <div class="registerHeader">
+    <h1 class="registerHeadingOne">Covid-19 Vaccine Registration</h1>
+  </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <form (submit)="register(registerForm)" #registerForm="ngForm">
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>First Name</mat-label>
+        <input matInput ngModel required type="text" name="firstName" #firstName="ngModel">
+        <mat-error *ngIf="firstName.invalid">Please enter a First Name.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Last Name</mat-label>
+        <input matInput ngModel required type="text" name="lastName" #lastName="ngModel">
+        <mat-error *ngIf="lastName.invalid">Please enter a Last Name.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Mobile</mat-label>
+        <input matInput ngModel required type="text" name="mobile" #mobile="ngModel">
+        <mat-error *ngIf="mobile.invalid">Please enter a Mobile Number.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Email</mat-label>
+        <input matInput ngModel required email type="email" name="email" #email="ngModel">
+        <mat-error *ngIf="email.invalid">Please enter a valid Email.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Password</mat-label>
+        <input matInput ngModel required type="password" name="password" #password="ngModel">
+        <mat-error *ngIf="password.invalid">Please enter a Password.</mat-error>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput ngModel required type="password" name="confirmPassword" #confirmPassword="ngModel">
+        <mat-error *ngIf="confirmPassword.invalid">Please enter a Password.</mat-error>
+      </mat-form-field> -->
+
+      <div class="btnHolder">
+        <button id="register" mat-raised-button color="primary" type="submit">Register</button>
+      </div>
+    </form>
+    <div class="loginLink" [routerLink] = "['/login']">Already Registered?</div>
+  </mat-card>
+</div>
