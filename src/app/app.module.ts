@@ -15,9 +15,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register/register.component';
 import { HeaderComponent } from './header/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyAccountComponent } from './myAccount/my-account/my-account.component';
 import { AppRoutingModule } from './app.routing.module';
+import { UserInterceptor } from './userService/user-interceptor';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { AppRoutingModule } from './app.routing.module';
     MatIconModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true}],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

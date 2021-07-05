@@ -1,14 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
 import { UserService } from 'src/app/userService/user.service';
 import { user } from 'src/app/userService/user.model';
+import { Subscription } from 'rxjs';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
+  private loggedInListenerSubscription: Subscription;
+  private registeredUserListenerSubscription: Subscription;
+  userIsLoggedIn = false;
+  userRegistered = false;
+  private email: string;
+  private password: string;
 
   options: FormGroup;
   floatLabelControl = new FormControl('auto');
@@ -19,7 +27,25 @@ export class RegisterComponent implements OnInit {
     });
    }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.registeredUserListenerSubscription = this.userService.getRegisteredUserListener().subscribe(isRegistered => {
+      this.userRegistered = isRegistered;
+      if(this.userRegistered){
+        this.userService.loginUser(this.email, this.password);
+        // this.userService.loggedInListener.next(true);
+      }
+    })
+    this.loggedInListenerSubscription = this.userService.getLoggedInListener().subscribe(isLoggedIn => {
+      this.userIsLoggedIn = isLoggedIn;
+      // if(this.userIsLoggedIn){
+      //   this.router.navigate(['/vaccinationDetails']);
+      // }
+    });
+  }
+
+  ngOnDestroy(){
+    this.loggedInListenerSubscription.unsubscribe();
+    this.registeredUserListenerSubscription.unsubscribe();
   }
 
   register(form : NgForm){
@@ -35,6 +61,8 @@ export class RegisterComponent implements OnInit {
     }
 
     this.userService.postUser(userDetails);
+    this.email = userDetails.email;
+    this.password = userDetails.password;
   }
 
 }

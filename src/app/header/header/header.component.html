@@ -8,11 +8,11 @@
     <li>
       <a mat-button routerLink="/vaccinationDetails" routerLinkActive="mat-accent">Vacination Details</a>
     </li>
-    <li>
+    <!-- <li>
       <a mat-button routerLink="/myAccount">My Account</a>
-    </li>
+    </li> -->
     <li>
-      <a mat-button routerLink="/logout">Logout</a>
+      <a mat-button (click)="onLogout()">Logout</a>
     </li>
   </ul>
 </mat-toolbar>
