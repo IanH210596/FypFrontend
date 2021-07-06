@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { UserService } from './userService/user.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -7,6 +9,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [AppModule],
+      providers: [UserService]
     }).compileComponents();
   });
 
@@ -20,12 +24,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('FypFrontend');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('FypFrontend app is running!');
   });
 });

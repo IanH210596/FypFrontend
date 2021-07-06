@@ -20,7 +20,6 @@ import { MyAccountComponent } from './myAccount/my-account/my-account.component'
 import { AppRoutingModule } from './app.routing.module';
 import { UserInterceptor } from './userService/user-interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,
