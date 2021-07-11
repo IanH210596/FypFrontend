@@ -11,31 +11,31 @@
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>First Name</mat-label>
         <input matInput ngModel required type="text" name="firstName" #firstName="ngModel">
-        <mat-error *ngIf="firstName.invalid">Please enter a First Name.</mat-error>
+        <mat-error id="firstNameError" *ngIf="firstName.invalid">Please enter a First Name.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Last Name</mat-label>
         <input matInput ngModel required type="text" name="lastName" #lastName="ngModel">
-        <mat-error *ngIf="lastName.invalid">Please enter a Last Name.</mat-error>
+        <mat-error id="lastNameError" *ngIf="lastName.invalid">Please enter a Last Name.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Mobile</mat-label>
         <input matInput ngModel required type="text" name="mobile" #mobile="ngModel">
-        <mat-error *ngIf="mobile.invalid">Please enter a Mobile Number.</mat-error>
+        <mat-error id="mobileError" *ngIf="mobile.invalid">Please enter a Mobile Number.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Email</mat-label>
         <input matInput ngModel required email type="email" name="email" #email="ngModel">
-        <mat-error *ngIf="email.invalid">Please enter a valid Email.</mat-error>
+        <mat-error id="emailError" *ngIf="email.invalid">Please enter a valid Email.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Password</mat-label>
         <input matInput ngModel required type="password" name="password" #password="ngModel">
-        <mat-error *ngIf="password.invalid">Please enter a Password.</mat-error>
+        <mat-error id="passwordError" *ngIf="password.invalid">Please enter a Password.</mat-error>
       </mat-form-field>
 
       <!-- <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
