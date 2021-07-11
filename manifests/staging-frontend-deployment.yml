@@ -1,0 +1,53 @@
+# YAML file for Frontend staging Deployments and Services
+# YAML to deploy latest Frontend image pushed to the Azure Container Repository for Frontend staging images and allow communication over container port 80
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fyp-frontend-staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment-name: fyp-frontend-staging
+  template:
+    metadata:
+      labels:
+        deployment-name: fyp-frontend-staging
+    spec:
+      containers:
+        - name: fyp-frontend-staging
+          image: acrfypianh.azurecr.io/fyp-ianh-frontend-staging
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+# YAML to deploy loadbalancer for the Frontend mapping incoming port 80 to target port 80 for the Frontend deployment named "fyp-frontend-staging"
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service-label: fyp-frontend-cluster-service-staging
+  name: fyp-frontend-cluster-service-loadbalancer-staging
+spec:
+  type: LoadBalancer
+  ports:
+  - name: fyp-frontend-load-balancer-service-port-staging
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    deployment-name: fyp-frontend-staging
+---
+#  YAML to deploy Horizontal Pod Autoscaler for the Frontend "fyp-frontend-staging" that will scale the Frontend from 1 to 5 replicas if allocated CPU utilization for a container exceeds 50%
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fyp-frontend-staging-hpa
+spec:
+  maxReplicas: 5 # define max replica count
+  minReplicas: 1  # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fyp-frontend-staging
+  targetCPUUtilizationPercentage: 50 # target CPU utilization

@@ -6,8 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build
-# -- --configuration=$CONFIG
+RUN npm run build -- --configuration=$CONFIG
 # End of Section
 
 # Section for NGINX Image
