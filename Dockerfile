@@ -1,7 +1,7 @@
 # Section for Compilation of Angular Frontend Project
 FROM node:12.7-alpine AS build
 # Argument for which configuration to use when building the image (this will determine the environment file used which specifies the different API URLs for staging and prod)
-# ARG CONFIG
+ARG CONFIG
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
