@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { user } from './user.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class UserService {
 
   postUser(user: user){
     const requestDetails: user = user;
-    this.http.post("http://localhost:3000/api/users/createUser", requestDetails, {observe: 'response'}).subscribe((responseData) => {
+    this.http.post(environment.apiUrl+"/api/users/createUser", requestDetails, {observe: 'response'}).subscribe((responseData) => {
       if(responseData.status == 201){
         this.registeredUserListener.next(true);
       }
@@ -44,7 +45,7 @@ export class UserService {
 
   loginUser(email: string, password: string){
     const requestDetails: any = {email: email, password: password};
-    this.http.post<{token: string, expiresIn: number}>("http://localhost:3000/api/users/login", requestDetails, {observe: 'response'}).subscribe((responseData) => {
+    this.http.post<{token: string, expiresIn: number}>(environment.apiUrl+"/api/users/login", requestDetails, {observe: 'response'}).subscribe((responseData) => {
       const token = responseData.body.token;
       this.token = token;
       if(responseData.status == 200){
