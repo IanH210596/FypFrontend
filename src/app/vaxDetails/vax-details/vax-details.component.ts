@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/userService/user.service';
+import { formatWithOptions } from 'util';
 import { vaccinationDetails } from './vax-details.model';
 import { VaxDetailsService } from './vax-details.service';
 // import { EventEmitter } from 'stream';
@@ -24,18 +27,10 @@ export class VaxDetailsComponent implements OnInit {
     {value: "Moderna", viewValue: "Moderna"}
   ];
 
-  // vaccinationDetails: any = {
-  //   ppsn: "",
-  //   dateOfBirth: Date,
-  //   selectedGender: "",
-  //   nationality: "",
-  //   addressOne: "",
-  //   addressTwo: "",
-  //   city: "",
-  //   postCode: "",
-  //   selectedVaccinePreference: ""
-  // };
-
+  private mode = "create";
+  isLoading = true;
+  vaccinationDetails: vaccinationDetails;
+  vaccinationDetailsId: string;
   options: FormGroup;
   floatLabelControl = new FormControl('auto');
 
@@ -47,28 +42,34 @@ export class VaxDetailsComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.vaxdetailsService.getVaccinationDetails().subscribe(vaxDetailsResponse => {
+      this.vaccinationDetails = vaxDetailsResponse.userVaccinationDetails;
+      this.vaccinationDetailsId = this.vaccinationDetails._id;
+      this.isLoading = false;
+      if(!this.vaccinationDetails){
+
+      } else{
+        this.mode = "edit";
+      }
+    }, error => {
+      this.isLoading = false;
+    });
   }
 
-  addVaccinationDetails(form : NgForm){
+  saveVaccinationDetails(form : NgForm){
     if(form.invalid){
       return;
     }
 
-    const details: vaccinationDetails = {
-      ppsn: form.value.ppsn,
-      dateOfBirth: form.value.dateOfBirth,
-      selectedGender: form.value.gender,
-      nationality: form.value.nationality,
-      addressOne: form.value.addressOne,
-      addressTwo: form.value.addressTwo,
-      city: form.value.city,
-      postCode: form.value.postCode,
-      selectedVaccinePreference: form.value.vaccinePreference
+    if(this.mode === "create") {
+      this.vaxdetailsService.postVaccinationDetails(form.value.ppsn, form.value.dateOfBirth, form.value.gender, form.value.nationality, form.value.addressOne, form.value.addressTwo, form.value.city, form.value.postCode, form.value.vaccinePreference).subscribe(vaxDetailsResponse => {
+        this.vaccinationDetails = vaxDetailsResponse.userVaccinationDetails;
+        this.vaccinationDetailsId = this.vaccinationDetails._id;
+        this.mode = "edit";
+      });
+    } else{
+      this.vaxdetailsService.putVaccinationDetails(this.vaccinationDetailsId ,form.value.ppsn, form.value.dateOfBirth, form.value.gender, form.value.nationality, form.value.addressOne, form.value.addressTwo, form.value.city, form.value.postCode, form.value.vaccinePreference);
     }
-
-    console.log(details);
-
-    this.vaxdetailsService.postVaccinationDetails(details);
   }
 
 }

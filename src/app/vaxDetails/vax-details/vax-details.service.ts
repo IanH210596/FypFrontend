@@ -7,19 +7,46 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class VaxDetailsService {
-  private vaccinationDetails: vaccinationDetails;
+  // private vaccinationDetails: vaccinationDetails;
 
   constructor(private http: HttpClient) { }
 
   getVaccinationDetails(){
-    return this.vaccinationDetails;
+      return this.http.get<{message: string, userVaccinationDetails: vaccinationDetails}>(environment.apiUrl+'/api/vaccinationDetails/getVaccinationDetails');
   }
 
-  postVaccinationDetails(vaccinationDetails: vaccinationDetails){
-    const details: vaccinationDetails = vaccinationDetails;
-    this.vaccinationDetails = details;
-    this.http.post(environment.apiUrl+"/api/vaccinationDetails/addVaccinationDetails", details).subscribe((responseData) => {
+  postVaccinationDetails(  ppsn: string, dateOfBirth: Date, selectedGender: string, nationality: string, addressOne: string, addressTwo: string, city: string, postCode: string, selectedVaccinePreference: string){
+    const details: any = {
+      ppsn: ppsn,
+      dateOfBirth: dateOfBirth,
+      selectedGender: selectedGender,
+      nationality: nationality,
+      addressOne: addressOne,
+      addressTwo: addressTwo,
+      city: city,
+      postCode: postCode,
+      selectedVaccinePreference: selectedVaccinePreference,
+    }
+    // this.vaccinationDetails = details;
+    return this.http.post<{message: string, userVaccinationDetails: vaccinationDetails}>(environment.apiUrl+"/api/vaccinationDetails/addVaccinationDetails", details);
+  }
+
+  putVaccinationDetails( id: string, ppsn: string, dateOfBirth: Date, selectedGender: string, nationality: string, addressOne: string, addressTwo: string, city: string, postCode: string, selectedVaccinePreference: string){
+    const details: any = {
+      _id: id,
+      ppsn: ppsn,
+      dateOfBirth: dateOfBirth,
+      selectedGender: selectedGender,
+      nationality: nationality,
+      addressOne: addressOne,
+      addressTwo: addressTwo,
+      city: city,
+      postCode: postCode,
+      selectedVaccinePreference: selectedVaccinePreference,
+    }
+    this.http.put(environment.apiUrl+"/api/vaccinationDetails//updateVaccinationDetails", details).subscribe((responseData) => {
       console.log(responseData);
     });
+
   }
 }

@@ -1,4 +1,5 @@
 export interface vaccinationDetails {
+  _id: string,
   ppsn: string,
   dateOfBirth: Date,
   selectedGender: string,
@@ -7,5 +8,6 @@ export interface vaccinationDetails {
   addressTwo: string,
   city: string,
   postCode: string,
-  selectedVaccinePreference: string
+  selectedVaccinePreference: string,
+  user: string
 };
