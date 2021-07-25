@@ -17,4 +17,7 @@ a {
 }
 .mat-toolbar{
   margin-bottom: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: 10vh;
 }

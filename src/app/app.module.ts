@@ -12,6 +12,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register/register.component';
 import { HeaderComponent } from './header/header/header.component';
@@ -19,6 +21,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyAccountComponent } from './myAccount/my-account/my-account.component';
 import { AppRoutingModule } from './app.routing.module';
 import { UserInterceptor } from './userService/user-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { UserInterceptor } from './userService/user-interceptor';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +48,16 @@ import { UserInterceptor } from './userService/user-interceptor';
     MatSelectModule,
     MatToolbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true}],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@
   background-color: #2196f3;
   min-height: 100%;
   padding-bottom: 9.85vh;
+  padding-top: 2vh;
 }
 
 .registerHeader{
@@ -27,6 +28,7 @@
   margin: auto;
   margin-bottom: 3vh;
   width: 50%;
+
 }
 
 .mat-form-field{
@@ -45,7 +47,7 @@ input{
 }
 
 button{
-  width: 20%;
+  min-width: 20%;
 }
 
 .loginLink{

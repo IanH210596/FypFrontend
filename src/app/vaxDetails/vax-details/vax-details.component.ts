@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/userService/user.service';
 import { formatWithOptions } from 'util';
@@ -35,7 +36,7 @@ export class VaxDetailsComponent implements OnInit {
   floatLabelControl = new FormControl('auto');
 
 
-  constructor(fb: FormBuilder, public vaxdetailsService: VaxDetailsService) {
+  constructor(fb: FormBuilder, public vaxdetailsService: VaxDetailsService, private snackBar: MatSnackBar) {
     this.options = fb.group({
       floatLabel: this.floatLabelControl,
     });
@@ -66,9 +67,22 @@ export class VaxDetailsComponent implements OnInit {
         this.vaccinationDetails = vaxDetailsResponse.userVaccinationDetails;
         this.vaccinationDetailsId = this.vaccinationDetails._id;
         this.mode = "edit";
+        this.snackBar.open("Vaccination Details Added Sucessfully!", "Close" , {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar']
+        });
       });
     } else{
-      this.vaxdetailsService.putVaccinationDetails(this.vaccinationDetailsId ,form.value.ppsn, form.value.dateOfBirth, form.value.gender, form.value.nationality, form.value.addressOne, form.value.addressTwo, form.value.city, form.value.postCode, form.value.vaccinePreference);
+      this.vaxdetailsService.putVaccinationDetails(this.vaccinationDetailsId ,form.value.ppsn, form.value.dateOfBirth, form.value.gender, form.value.nationality, form.value.addressOne, form.value.addressTwo, form.value.city, form.value.postCode, form.value.vaccinePreference).subscribe(() =>{
+        this.snackBar.open("Vaccination Details Updated Sucessfully!", "Close" , {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar']
+        });
+      });
     }
   }
 

@@ -27,7 +27,7 @@ input{
 }
 
 button{
-  width: 20%;
+  min-width: 20%;
 }
 
 #footer{
@@ -36,3 +36,5 @@ button{
   height: 10vh;
   margin-top: -9.85vh;
 }
+
+

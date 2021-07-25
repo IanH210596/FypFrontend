@@ -44,9 +44,6 @@ export class VaxDetailsService {
       postCode: postCode,
       selectedVaccinePreference: selectedVaccinePreference,
     }
-    this.http.put(environment.apiUrl+"/api/vaccinationDetails//updateVaccinationDetails", details).subscribe((responseData) => {
-      console.log(responseData);
-    });
-
+    return this.http.put(environment.apiUrl+"/api/vaccinationDetails//updateVaccinationDetails", details);
   }
 }
