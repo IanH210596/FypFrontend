@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { UserService } from 'src/app/userService/user.service';
 import { user } from 'src/app/userService/user.model';
 import { Subscription } from 'rxjs';
+import { passwordValidator } from 'src/app/validators/password-validator';
+
 // import { Router } from '@angular/router';
 
 @Component({
@@ -18,16 +20,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private email: string;
   private password: string;
 
-  options: FormGroup;
+  form: FormGroup;
   floatLabelControl = new FormControl('auto');
 
   constructor(fb: FormBuilder, public userService: UserService) {
-    this.options = fb.group({
+    this.form = fb.group({
       floatLabel: this.floatLabelControl,
     });
    }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      'firstName': new FormControl(null, {validators: [Validators.required]}),
+      'lastName': new FormControl(null, {validators: [Validators.required]}),
+      'mobile': new FormControl(null, {validators: [Validators.required]}),
+      'email': new FormControl(null, {validators: [Validators.required, Validators.email]}),
+      'password': new FormControl(null, {validators: [Validators.required]}),
+      'confirmPassword': new FormControl(null, {validators: [Validators.required]})
+    }, {validators: passwordValidator});
+
     this.registeredUserListenerSubscription = this.userService.getRegisteredUserListener().subscribe(isRegistered => {
       this.userRegistered = isRegistered;
       if(this.userRegistered){
@@ -48,16 +59,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registeredUserListenerSubscription.unsubscribe();
   }
 
-  register(form : NgForm){
-    if(form.invalid){
+  onPasswordInput(){
+    if(this.form.hasError('mismatch')){
+      this.form.get('confirmPassword').setErrors([{'mismatch': true}]);
+    }
+    else{
+      this.form.get('confirmPassword').setErrors(null);
+    }
+  }
+
+  register(){
+    if(this.form.invalid){
       return;
     }
     const userDetails: user = {
-      firstName: form.value.firstName,
-      lastName: form.value.lastName,
-      mobile: form.value.mobile,
-      email: form.value.email,
-      password: form.value.password
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      mobile: this.form.value.mobile,
+      email: this.form.value.email,
+      password: this.form.value.password
     }
 
     this.userService.postUser(userDetails);

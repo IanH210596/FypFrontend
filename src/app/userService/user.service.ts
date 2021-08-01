@@ -55,8 +55,6 @@ export class UserService {
 
         const now = new Date();
         const expirationDate = new Date(now.getTime() + (expiresInDuration * 1000));
-        console.log(expirationDate);
-
         this.saveToken(token, expirationDate);
 
         this.isLoggedIn = true;

@@ -39,27 +39,27 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  //-------------------------------------------------------------------------------
-  //Test Case 02
-  //-------------------------------------------------------------------------------
+  // //-------------------------------------------------------------------------------
+  // //Test Case 02
+  // //-------------------------------------------------------------------------------
 
-  it('should initiate the email field as empty', () => {
-    let debugElementEmail = fixture.debugElement.query(By.css('[name=email]'));
-    let elEmail = debugElementEmail.nativeElement;
-    // expect the email input to be empty by default on loading
-    expect(elEmail.value).toBe('');
-  });
+  // it('should initiate the email field as empty', () => {
+  //   let debugElementEmail = fixture.debugElement.query(By.css('[name=email]'));
+  //   let elEmail = debugElementEmail.nativeElement;
+  //   // expect the email input to be empty by default on loading
+  //   expect(elEmail.value).toBe('');
+  // });
 
-  //-------------------------------------------------------------------------------
-  //Test Case 03
-  //-------------------------------------------------------------------------------
+  // //-------------------------------------------------------------------------------
+  // //Test Case 03
+  // //-------------------------------------------------------------------------------
 
-  it('should initiate the password field as empty', () => {
-    let debugElementPassword = fixture.debugElement.query(By.css('[name=password]'));
-    let elPassword = debugElementPassword.nativeElement;
-    // expect the email input to be empty by default on loading
-    expect(elPassword.value).toBe('');
-  });
+  // it('should initiate the password field as empty', () => {
+  //   let debugElementPassword = fixture.debugElement.query(By.css('[name=password]'));
+  //   let elPassword = debugElementPassword.nativeElement;
+  //   // expect the email input to be empty by default on loading
+  //   expect(elPassword.value).toBe('');
+  // });
 
   //-------------------------------------------------------------------------------
   //Test Case 04
