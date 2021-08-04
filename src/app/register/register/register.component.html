@@ -12,39 +12,39 @@
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>First Name</mat-label>
-        <input matInput type="text" formControlName="firstName">
+        <input id="firstNameInput" matInput type="text" formControlName="firstName">
         <mat-error id="firstNameError" *ngIf="form.get('firstName').invalid">Please enter a First Name.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Last Name</mat-label>
-        <input matInput type="text" formControlName="lastName">
+        <input id="lastNameInput" matInput type="text" formControlName="lastName">
         <mat-error id="lastNameError" *ngIf="form.get('lastName').invalid">Please enter a Last Name.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Mobile</mat-label>
-        <input matInput type="tel" formControlName="mobile">
+        <input id="mobileInput" matInput type="tel" formControlName="mobile">
         <mat-error id="mobileError" *ngIf="form.get('mobile').invalid">Please enter a Mobile Number.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email">
+        <input id="emailInput" matInput type="email" formControlName="email">
         <mat-error id="emailError" *ngIf="form.get('email').invalid">Please enter a valid Email.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" (input)="onPasswordInput()">
+        <input id="passwordInput" matInput type="password" formControlName="password" (input)="onPasswordInput()">
         <mat-error id="passwordError" *ngIf="form.get('password').invalid">Please enter a Password.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Confirm Password</mat-label>
-        <input matInput type="password" formControlName="confirmPassword" (input)="onPasswordInput()">
-        <mat-error id="passwordError" *ngIf="form.get('confirmPassword').hasError('required')">Please enter a Password.</mat-error>
-        <mat-error *ngIf="form.get('confirmPassword').invalid && !form.get('confirmPassword').hasError('required')">Password does not match.</mat-error>
+        <input id="confirmPasswordInput" matInput type="password" formControlName="confirmPassword" (input)="onPasswordInput()">
+        <mat-error id="confirmPasswordRequiredError" *ngIf="form.get('confirmPassword').hasError('required')">Please enter a Password.</mat-error>
+        <mat-error id="confirmPasswordMismatchError" *ngIf="form.get('confirmPassword').invalid && !form.get('confirmPassword').hasError('required')">Password does not match.</mat-error>
       </mat-form-field>
 
       <div class="btnHolder">

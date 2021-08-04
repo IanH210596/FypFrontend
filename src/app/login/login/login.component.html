@@ -11,13 +11,13 @@
     <form (submit)="login()" [formGroup]='form'>
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email">
+        <input id="emailInput" matInput type="email" formControlName="email">
         <mat-error id="emailError" *ngIf="form.get('email').invalid">Please enter a valid Email.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password">
+        <input id="passwordInput" matInput type="password" formControlName="password">
         <mat-error id="passwordError" *ngIf="form.get('password').invalid">Please enter a Password.</mat-error>
       </mat-form-field>
 
