@@ -25,6 +25,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: covid-vaccine-registration-prod
   labels:
     service-label: fyp-frontend-cluster-service-prod
   name: fyp-frontend-cluster-service-loadbalancer-prod
