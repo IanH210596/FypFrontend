@@ -7,14 +7,15 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class VaxDetailsService {
-  // private vaccinationDetails: vaccinationDetails;
 
   constructor(private http: HttpClient) { }
 
+  // method to make HTTP GET request to API to get any existing vaccination details for user
   getVaccinationDetails(){
       return this.http.get<{message: string, userVaccinationDetails: vaccinationDetails}>(environment.apiUrl+'/api/vaccinationDetails/getVaccinationDetails');
   }
 
+  // method to make HTTP POST request to API to add vaccination details for user
   postVaccinationDetails(  ppsn: string, dateOfBirth: Date, selectedGender: string, nationality: string, addressOne: string, addressTwo: string, city: string, postCode: string, selectedVaccinePreference: string){
     const details: any = {
       ppsn: ppsn,
@@ -27,10 +28,10 @@ export class VaxDetailsService {
       postCode: postCode,
       selectedVaccinePreference: selectedVaccinePreference,
     }
-    // this.vaccinationDetails = details;
     return this.http.post<{message: string, userVaccinationDetails: vaccinationDetails}>(environment.apiUrl+"/api/vaccinationDetails/addVaccinationDetails", details);
   }
 
+  // method to make HTTP PUT request to API to update vaccination details for user
   putVaccinationDetails( id: string, ppsn: string, dateOfBirth: Date, selectedGender: string, nationality: string, addressOne: string, addressTwo: string, city: string, postCode: string, selectedVaccinePreference: string){
     const details: any = {
       _id: id,

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   floatLabelControl = new FormControl('auto');
 
   constructor(fb: FormBuilder, public userService: UserService) {
+    // sets floating labels for the FormGroup
     this.form = fb.group({
       floatLabel: this.floatLabelControl,
     });
@@ -29,11 +30,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       'password': new FormControl(null, {validators: [Validators.required]}),
     });
 
+
     this.loggedInListenerSubscription = this.userService.getLoggedInListener().subscribe(isLoggedIn => {
       this.userIsLoggedIn = isLoggedIn;
-      // if(this.userIsLoggedIn){
-      //   this.router.navigate(['/vaccinationDetails']);
-      // }
     });
   }
 
@@ -42,17 +41,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(){
+    // if the form is invalid, ie form control inputs not allowed as they do not meet the requirements of their validators, then nothing is returned.
     if(this.form.invalid){
       return;
     }
+    // However, if the form is valid, then userService loginUser method is called using the form's email and password inputs to attempt to login the user.
     this.userService.loginUser(this.form.value.email, this.form.value.password);
-
-    // .then(() => {
-    //   if(this.userService.loggedIn){
-    //     this.router.navigate(['/vaccinationDetails']);
-    //   }
-    // });
-
   }
 
 }

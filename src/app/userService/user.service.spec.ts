@@ -1,15 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
-import { TestBed, inject } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { TestBed} from '@angular/core/testing';
 import { AppModule } from '../app.module';
 import { AppRoutingModule } from '../app.routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from './user.service';
-import { LoginComponent } from '../login/login/login.component';
-import { VaxDetailsComponent } from '../vaxDetails/vax-details/vax-details.component';
-import { RouteGuard } from './user.routeguard';
 import { user } from './user.model';
 
 describe('UserService', () => {
@@ -22,7 +17,6 @@ describe('UserService', () => {
   let testUser: user;
   let httpTestingController : HttpTestingController;
   let httpClient: HttpClient;
-  // let httpCClientSpy: { get: jasmine.Spy };
 
   beforeAll(() => {
     // constants assigned data for testing purposes
@@ -51,8 +45,7 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, AppRoutingModule, HttpClientTestingModule, RouterTestingModule],
-      // providers: [HttpClient, Router, Subject]
+      imports: [AppModule, AppRoutingModule, HttpClientTestingModule, RouterTestingModule]
     });
     service = TestBed.inject(UserService);
     httpClient = TestBed.inject(HttpClient);
@@ -109,24 +102,5 @@ describe('UserService', () => {
     httpTestingController.verify();
   });
 
-
-  //-------------------------------------------------------------------------------
-  //Test Case 04
-  //-------------------------------------------------------------------------------
-
-
-  // it('should TC05........', (done: DoneFn) => {
-  //   let test: boolean;
-  //   service.postUser(testUser);
-  //   console.log('Hellon 2')
-  //   // service.loginUser(testUser.email, testUser.password);
-  //   // expect(service.getLoginStatus()).toBeTrue();
-  //   service.getRegisteredUserListener().subscribe((regUser) => {
-  //     console.log('Hello')
-  //     test = regUser.valueOf();
-  //   })
-  //   expect(test).toBeTrue();
-  //   done();
-  // });
 
 });

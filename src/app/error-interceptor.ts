@@ -11,12 +11,16 @@ export class ErrorInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(req).pipe(
+      // used to intercept any error responses returned by the API for requests from the frontend.
       catchError((error: HttpErrorResponse) => {
+        // Default error message
         let errorMessage = "An unknown error occurred!";
         if (error.error.message) {
+          // Overwrites error message if message returned in error response
           errorMessage = error.error.message;
         }
 
+        // opens model dialog for the specified ErrorComponent
         this.dialog.open(ErrorComponent, {data: {message: errorMessage}});
         return throwError(error);
 

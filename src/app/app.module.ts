@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
+    // Components in Frontend project for the app.module declared
     AppComponent,
     VaxDetailsComponent,
     LoginComponent,
@@ -35,6 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ErrorComponent
   ],
   imports: [
+    // imported package modules for the Frontend project app.module declared
     BrowserModule,
     AppRoutingModule,
     FormsModule,

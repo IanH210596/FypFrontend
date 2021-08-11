@@ -77,57 +77,57 @@ describe('RegisterComponent', () => {
   // //Test Case 02
   // //-------------------------------------------------------------------------------
 
-  // it('should initiate the firstname field as empty', () => {
-  //   let debugElementFirstName = fixture.debugElement.query(By.css('[name=firstName]'));
-  //   let elFirstName = debugElementFirstName.nativeElement;
-  //   // expect the firstname input to be empty by default on loading
-  //   expect(elFirstName.value).toBe('');
-  // });
+  it('should initiate the firstname field as empty', () => {
+    let debugElementFirstName = fixture.debugElement.query(By.css('#firstNameInput'));
+    let elFirstName = debugElementFirstName.nativeElement;
+    // expect the firstname input to be empty by default on loading
+    expect(elFirstName.value).toBe('');
+  });
 
   // //-------------------------------------------------------------------------------
   // //Test Case 03
   // //-------------------------------------------------------------------------------
 
-  // it('should initiate the lastname field as empty', () => {
-  //   let debugElementLastName = fixture.debugElement.query(By.css('[name=lastName]'));
-  //   let elLastName = debugElementLastName.nativeElement;
-  //   // expect the lastname input to be empty by default on loading
-  //   expect(elLastName.value).toBe('');
-  // });
+  it('should initiate the lastname field as empty', () => {
+    let debugElementLastName = fixture.debugElement.query(By.css('#lastNameInput'));
+    let elLastName = debugElementLastName.nativeElement;
+    // expect the lastname input to be empty by default on loading
+    expect(elLastName.value).toBe('');
+  });
 
   // //-------------------------------------------------------------------------------
   // //Test Case 04
   // //-------------------------------------------------------------------------------
 
-  // it('should initiate the mobile field as empty', () => {
-  //   let debugElementMobile = fixture.debugElement.query(By.css('[name=mobile]'));
-  //   let elMobile = debugElementMobile.nativeElement;
-  //   // expect the mobile input to be empty by default on loading
-  //   expect(elMobile.value).toBe('');
-  // });
+  it('should initiate the mobile field as empty', () => {
+    let debugElementMobile = fixture.debugElement.query(By.css('#mobileInput'));
+    let elMobile = debugElementMobile.nativeElement;
+    // expect the mobile input to be empty by default on loading
+    expect(elMobile.value).toBe('');
+  });
 
   // //-------------------------------------------------------------------------------
   // //Test Case 05
   // //-------------------------------------------------------------------------------
 
-  // it('should initiate the email field as empty', () => {
-  //   let debugElementEmail = fixture.debugElement.query(By.css('[name=email]'));
-  //   let elEmail = debugElementEmail.nativeElement;
-  //   // expect the email input to be empty by default on loading
-  //   expect(elEmail.value).toBe('');
-  // });
+  it('should initiate the email field as empty', () => {
+    let debugElementEmail = fixture.debugElement.query(By.css('#emailInput'));
+    let elEmail = debugElementEmail.nativeElement;
+    // expect the email input to be empty by default on loading
+    expect(elEmail.value).toBe('');
+  });
 
 
   // //-------------------------------------------------------------------------------
   // //Test Case 06
   // //-------------------------------------------------------------------------------
 
-  // it('should initiate the password field as empty', () => {
-  //   let debugElementPassword = fixture.debugElement.query(By.css('[name=password]'));
-  //   let elPassword = debugElementPassword.nativeElement;
-  //   // expect the password input to be empty by default on loading
-  //   expect(elPassword.value).toBe('');
-  // });
+  it('should initiate the password field as empty', () => {
+    let debugElementPassword = fixture.debugElement.query(By.css('#passwordInput'));
+    let elPassword = debugElementPassword.nativeElement;
+    // expect the password input to be empty by default on loading
+    expect(elPassword.value).toBe('');
+  });
 
   // //-------------------------------------------------------------------------------
   // //Test Case 07

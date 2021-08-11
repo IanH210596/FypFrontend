@@ -4,6 +4,7 @@ import { AppModule } from 'src/app/app.module';
 import { By } from '@angular/platform-browser';
 import { VaxDetailsComponent } from './vax-details.component';
 import { VaxDetailsService } from './vax-details.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 describe('VaxDetailsComponent', () => {
   let component: VaxDetailsComponent;
@@ -47,7 +48,7 @@ describe('VaxDetailsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ VaxDetailsComponent ],
       imports: [AppModule],
-      providers: [FormBuilder, VaxDetailsService]
+      providers: [FormBuilder, VaxDetailsService, MatSnackBar]
     })
     .compileComponents();
   });
@@ -76,7 +77,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the ppsn field as empty', () => {
-  //   let debugElementPpsn = fixture.debugElement.query(By.css('[name=ppsn]'));
+  //   let debugElementPpsn = fixture.debugElement.query(By.css('#ppsnInput'));
   //   let elPpsn = debugElementPpsn.nativeElement;
   //   // expect the firstname input to be empty by default on loading
   //   expect(elPpsn.value).toBe('');
@@ -87,7 +88,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the date of birth field as empty', () => {
-  //   let debugElementDateOfBirth = fixture.debugElement.query(By.css('[name=dateOfBirth]'));
+  //   let debugElementDateOfBirth = fixture.debugElement.query(By.css('#dateOfBirthInput'));
   //   let elDateOfBirth = debugElementDateOfBirth.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elDateOfBirth.value).toBe('');
@@ -98,7 +99,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the selected gender field as empty', () => {
-  //   let debugSelectedGender = fixture.debugElement.query(By.css('[name=gender]'));
+  //   let debugSelectedGender = fixture.debugElement.query(By.css('#genderInput'));
   //   let elSelectedGender = debugSelectedGender.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elSelectedGender.value).toBeUndefined();
@@ -109,7 +110,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the nationality field as empty', () => {
-  //   let debugElementNationality = fixture.debugElement.query(By.css('[name=nationality]'));
+  //   let debugElementNationality = fixture.debugElement.query(By.css('#nationalityInput'));
   //   let elNationality = debugElementNationality.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elNationality.value).toBe('');
@@ -120,7 +121,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the addressOne field as empty', () => {
-  //   let debugElementAddressOne = fixture.debugElement.query(By.css('[name=addressOne]'));
+  //   let debugElementAddressOne = fixture.debugElement.query(By.css('#addressOneInput'));
   //   let elAddressOne = debugElementAddressOne.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elAddressOne.value).toBe('');
@@ -131,7 +132,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the addressTwo field as empty', () => {
-  //   let debugElementAddressTwo = fixture.debugElement.query(By.css('[name=addressTwo]'));
+  //   let debugElementAddressTwo = fixture.debugElement.query(By.css('#addressTwoInput'));
   //   let elAddressTwo = debugElementAddressTwo.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elAddressTwo.value).toBe('');
@@ -143,7 +144,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the city field as empty', () => {
-  //   let debugElementCity = fixture.debugElement.query(By.css('[name=city]'));
+  //   let debugElementCity = fixture.debugElement.query(By.css('#cityInput'));
   //   let elCity = debugElementCity.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elCity.value).toBe('');
@@ -154,7 +155,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the postcode field as empty', () => {
-  //   let debugElementPostcode = fixture.debugElement.query(By.css('[name=postCode]'));
+  //   let debugElementPostcode = fixture.debugElement.query(By.css('#postCodeInput'));
   //   let elPostCode = debugElementPostcode.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elPostCode.value).toBe('');
@@ -165,7 +166,7 @@ describe('VaxDetailsComponent', () => {
   // //-------------------------------------------------------------------------------
 
   // it('should initiate the selected vaccine preference field as empty', () => {
-  //   let debugSelectedVaccinePreference = fixture.debugElement.query(By.css('[name=vaccinePreference]'));
+  //   let debugSelectedVaccinePreference = fixture.debugElement.query(By.css('#vaccinePreferenceInput'));
   //   let elSelectedVaccinePreference = debugSelectedVaccinePreference.nativeElement;
   //   // expect the lastname input to be empty by default on loading
   //   expect(elSelectedVaccinePreference.value).toBeUndefined();

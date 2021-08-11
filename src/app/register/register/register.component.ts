@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   floatLabelControl = new FormControl('auto');
 
   constructor(fb: FormBuilder, public userService: UserService) {
+    // sets floating labels for the FormGroup
     this.form = fb.group({
       floatLabel: this.floatLabelControl,
     });
@@ -37,20 +38,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
       'email': new FormControl(null, {validators: [Validators.required, Validators.email]}),
       'password': new FormControl(null, {validators: [Validators.required]}),
       'confirmPassword': new FormControl(null, {validators: [Validators.required]})
-    }, {validators: passwordValidator});
+    }, {validators: passwordValidator}); //custom cross field validator to check that password and confirm password fields match
 
+    // subscribes to userService getRegisteredUserListener which returns an Observable denoting whether or not the user is successfully registered
     this.registeredUserListenerSubscription = this.userService.getRegisteredUserListener().subscribe(isRegistered => {
       this.userRegistered = isRegistered;
+      // if the user is registered successfully, then they are automatically logged in
       if(this.userRegistered){
         this.userService.loginUser(this.email, this.password);
-        // this.userService.loggedInListener.next(true);
       }
     })
     this.loggedInListenerSubscription = this.userService.getLoggedInListener().subscribe(isLoggedIn => {
       this.userIsLoggedIn = isLoggedIn;
-      // if(this.userIsLoggedIn){
-      //   this.router.navigate(['/vaccinationDetails']);
-      // }
     });
   }
 
@@ -59,7 +58,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registeredUserListenerSubscription.unsubscribe();
   }
 
+  // method triggered everytime something input to the password or confirm password inputs
   onPasswordInput(){
+    // if the form has a password mismatch error, then mismatch error is set for the confirm password form control
     if(this.form.hasError('mismatch')){
       this.form.get('confirmPassword').setErrors([{'mismatch': true}]);
     }
@@ -69,6 +70,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   register(){
+    // if the form is invalid, ie form control inputs not allowed as they do not meet the requirements of their validators, then nothing is returned.
     if(this.form.invalid){
       return;
     }
@@ -80,6 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: this.form.value.password
     }
 
+    // However, if the form is valid, then userService postUser method is called using the form's inputs to attempt to register the user.
     this.userService.postUser(userDetails);
     this.email = userDetails.email;
     this.password = userDetails.password;

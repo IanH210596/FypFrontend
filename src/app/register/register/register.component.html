@@ -2,17 +2,22 @@
   <div class="registerHeader">
     <img src="../../../../assets/syringe.png" alt="Vaccine Vial and Syringe" id="app_logo">
     <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-    <h1 class="registerHeadingOne">Covid-19 Vaccine Registration</h1>
+    <h1 class="registerHeadingOne">COVID-19 Vaccine Registration</h1>
   </div>
+  <!-- HTML for Angular Material Card - used for containing form information in my application. See Documentation: https://material.angular.io/components/card/overview -->
   <mat-card>
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
     <form (submit)="register()" [formGroup]='form'>
 
+      <!-- HTML for Angular Material Form Field - used for containing form informaiton in my application. See Documentation: https://material.angular.io/components/form-field/overview -->
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <!-- Label for the Input -->
         <mat-label>First Name</mat-label>
+        <!-- The input, its type and corresponding form control name -->
         <input id="firstNameInput" matInput type="text" formControlName="firstName">
+        <!-- The error which is shown if the form is invalid -->
         <mat-error id="firstNameError" *ngIf="form.get('firstName').invalid">Please enter a First Name.</mat-error>
       </mat-form-field>
 

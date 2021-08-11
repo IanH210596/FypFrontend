@@ -1,21 +1,16 @@
+<!-- HTML for Angular Material Toolbar - Header Component for my application once logged in. See Documentation: https://material.angular.io/components/toolbar/overview -->
 <mat-toolbar color="primary">
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-
   <img src="../../../../assets/syringe.png" alt="Vaccine Vial and Syringe" id="app_logo">
   <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 
-  <span>Covid-19 Vaccine Registration</span>
+  <span>COVID-19 Vaccine Registration</span>
   <span class="spacer"></span>
   <ul>
     <li>
       <a mat-button routerLink="/vaccinationDetails" routerLinkActive="mat-accent">Vaccination Details</a>
     </li>
-    <!-- <li>
-      <a mat-button routerLink="/myAccount">My Account</a>
-    </li> -->
     <li>
+      <!-- Buttin used to trigger logout of user -->
       <a id="logoutBtn" mat-button (click)="onLogout()">Logout</a>
     </li>
   </ul>

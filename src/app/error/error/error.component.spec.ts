@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed} from '@angular/core/testing';
 import { Inject} from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppModule } from 'src/app/app.module';
 
 import { ErrorComponent } from './error.component';
+import { AppRoutingModule } from 'src/app/app.routing.module';
 
 describe('ErrorComponent', () => {
   let component: ErrorComponent;
@@ -12,8 +13,11 @@ describe('ErrorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ErrorComponent ],
-      imports: [AppModule],
-      providers: []
+      imports: [AppModule, AppRoutingModule, MatDialogModule],
+      providers: [{
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+      }]
     })
     .compileComponents();
   });

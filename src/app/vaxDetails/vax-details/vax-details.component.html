@@ -1,19 +1,25 @@
 <div class="wrapper">
   <app-header></app-header>
+  <!-- HTML for Angular Material Card - used for containing form information in my application. See Documentation: https://material.angular.io/components/card/overview -->
   <mat-card>
     <mat-card-header>
       <mat-card-title>Vaccination Details</mat-card-title>
     </mat-card-header>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form (submit)="saveVaccinationDetails()" [formGroup]='form' *ngIf="!isLoading">
+      <!-- HTML for Angular Material Form Field - used for containing form informaiton in my application. See Documentation: https://material.angular.io/components/form-field/overview -->
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
+        <!-- Label for the Input -->
         <mat-label>PPSN</mat-label>
+        <!-- The input, its type and corresponding form control name -->
         <input id="ppsnInput" matInput type="text" formControlName="ppsn">
+        <!-- The error which is shown if the form is invalid -->
         <mat-error id="ppsnError" *ngIf="form.get('ppsn').invalid">Please enter a PPSN.</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Date Of Birth</mat-label>
+        <!-- HTML for Angular Material Datepicker - used for containing form informaiton in my application. See Documentation: https://material.angular.io/components/datepicker/overview-->
         <input id="dateOfBirthInput" matInput formControlName="dateOfBirth" [matDatepicker]="picker" [max]="maxDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -22,6 +28,7 @@
 
       <mat-form-field appearance="outline" [floatLabel]="floatLabelControl.value">
         <mat-label>Gender</mat-label>
+        <!-- HTML for Angular Material Select - used for containing form informaiton in my application. See Documentation: https://material.angular.io/components/select/overview -->
         <mat-select id="genderInput" formControlName="gender">
           <mat-option *ngFor="let gender of genderList" [value]="gender.value">{{gender.viewValue}}</mat-option>
         </mat-select>

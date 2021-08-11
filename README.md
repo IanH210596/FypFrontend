@@ -12,7 +12,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--configuration=$ENV` argument when building the application to pass the environment `$ENV` which may be prod or staging depending on the environment to be deployed for and the API Url for that environment. Do not pass any arguments if intending to run on localhost as this will use the default environment settings.
+
 
 ## Running unit tests
 

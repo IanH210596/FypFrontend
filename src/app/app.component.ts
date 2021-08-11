@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService){}
 
   ngOnInit(){
+    // everytime the application is started the userService autoAuthUser method is called
+    // to check if a valid token which has not yet expired is available to auto-login the user
     this.userService.autoAuthUser();
   }
 }
